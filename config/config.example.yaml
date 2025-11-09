@@ -1,0 +1,45 @@
+market:
+  symbols:
+    - AAPL
+    - GOOGL
+    - MSFT
+    - TSLA
+    - BTC-USD
+  data_source: "yfinance"  # Options: yfinance, polygon, alpaca
+  update_frequency: 60  # seconds
+
+paper_trading:
+  initial_capital: 100.0
+  commission: 0.001  # 0.1%
+  slippage: 0.0005   # 0.05%
+  max_position_size: 0.2  # Max 20% of portfolio per position
+
+evolution:
+  schedule: "16:30"  # Market close time (EST)
+  top_n: 15
+  max_algorithms: 100
+  llm_provider: "anthropic"  # Options: anthropic, openai
+  llm_model: "claude-sonnet-4-5-20250929"
+  evaluation_window: 1  # days
+
+sentiment:
+  enabled: true
+  sources:
+    - fear_greed
+    - news_api
+  update_frequency: 300  # 5 minutes
+
+performance:
+  metrics:
+    - roi
+    - sharpe
+    - max_drawdown
+    - win_rate
+    - sortino
+  risk_free_rate: 0.04  # 4% annual risk-free rate
+
+logging:
+  level: INFO
+  file: "logs/trading_agent.log"
+  rotation: "1 day"
+  retention: "30 days"
